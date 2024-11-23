@@ -4,8 +4,10 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sopkathon_android_team3.data.ServicePool
+import com.example.sopkathon_android_team3.data.ServicePool.beadDataService
 import com.example.sopkathon_android_team3.data.dto.request.RequestBeadContent
 import com.example.sopkathon_android_team3.presentation.type.CrystalAnimation
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -62,9 +64,9 @@ class HomeViewModel : ViewModel() {
                 _animation.update {
                     CrystalAnimation.fromCount(8)
                 }
-                runBlocking {
-                    postKingBeadContent()
-                }
+                delay(4500)
+                postKingBeadContent()
+
             } else {
                 _animation.update {
                     CrystalAnimation.fromCount(count % 8)
@@ -82,7 +84,7 @@ class HomeViewModel : ViewModel() {
                     CrystalAnimation.fromCount(0)
                 }
             }.onFailure { error ->
-                Log.d("ㅋㅋ",error.message.toString())
+                Log.d("ㅋㅋ", error.message.toString())
             }
         }
     }
