@@ -36,7 +36,7 @@ fun EvenIfAddDialog(
     onEvenValueChange: (String) -> Unit,
     ifValue: String,
     onIfValueChange: (String) -> Unit,
-    onClickConfirm: (String, String) -> Unit,
+    onClickConfirm: () -> Unit,
     onClickCancel: () -> Unit
 ) {
     Dialog(
@@ -84,7 +84,7 @@ fun EvenIfAddDialog(
                 inputTextStyle = defaultSopkathonAndroidTeam3Typography.head5Bold18,
                 hintTextStyle = defaultSopkathonAndroidTeam3Typography.head5Bold18,
                 paddingTop = 19.dp,
-                paddingHorizontal = 40.dp,
+                paddingHorizontal = 30.dp,
                 internalPaddingVertical = 14.dp,
                 internalPaddingHorizontal = 48.dp,
                 inputTextColor = White,
@@ -98,7 +98,7 @@ fun EvenIfAddDialog(
                 inputTextStyle = defaultSopkathonAndroidTeam3Typography.head5Bold18,
                 hintTextStyle = defaultSopkathonAndroidTeam3Typography.head5Bold18,
                 paddingTop = 31.dp,
-                paddingHorizontal = 40.dp,
+                paddingHorizontal = 30.dp,
                 internalPaddingVertical = 57.dp,
                 internalPaddingHorizontal = 31.dp,
                 inputTextColor = White,
@@ -107,7 +107,7 @@ fun EvenIfAddDialog(
 
             ConfirmEvenIfButton(
                 buttonText = "완료",
-                onClick = { onClickConfirm(evenValue, ifValue) },
+                onClick = { onClickConfirm() },
                 modifier = Modifier
                     .padding(horizontal = 20.dp)
                     .padding(top = 42.dp, bottom = 22.dp)
@@ -116,21 +116,21 @@ fun EvenIfAddDialog(
     }
 }
 
-@Preview(
-    showSystemUi = true,
-    showBackground = true
-)
-@Composable
-fun BasicDialogPreview() {
-    SOPKATHON_ANDROID_TEAM3Theme {
-    EvenIfAddDialog(
-        onDismissRequest = {},
-        evenValue = "d",
-        onEvenValueChange = {},
-        ifValue = "",
-        onIfValueChange = {},
-        onClickConfirm = { even, ifValue -> println("Even: $even, If: $ifValue") },
-        onClickCancel = {}
-    )
-        }
-}
+//@Preview(
+//    showSystemUi = true,
+//    showBackground = true
+//)
+//@Composable
+//fun BasicDialogPreview() {
+//    SOPKATHON_ANDROID_TEAM3Theme {
+//    EvenIfAddDialog(
+//        onDismissRequest = {},
+//        evenValue = "d",
+//        onEvenValueChange = {},
+//        ifValue = "",
+//        onIfValueChange = {},
+//        onClickConfirm = { println("Even: $even, If: $ifValue") },
+//        onClickCancel = {}
+//    )
+//        }
+//}

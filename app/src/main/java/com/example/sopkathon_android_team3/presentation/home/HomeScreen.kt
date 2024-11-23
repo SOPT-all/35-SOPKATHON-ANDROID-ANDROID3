@@ -2,6 +2,7 @@ package com.example.sopkathon_android_team3.presentation.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -33,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.sopkathon_android_team3.R
 import com.example.sopkathon_android_team3.presentation.component.BasicLottie
+import com.example.sopkathon_android_team3.presentation.component.dialog.EvenIfAddDialog
 import com.example.sopkathon_android_team3.presentation.home.component.HomeDescriptionDialog
 import com.example.sopkathon_android_team3.presentation.type.CrystalAnimation
 import com.example.sopkathon_android_team3.ui.theme.SOPKATHON_ANDROID_TEAM3Theme
@@ -47,7 +49,11 @@ fun HomeRoute(
 
 ) {
     var showDialog by remember { mutableStateOf(false) }
+    var showAddDialog by remember { mutableStateOf(false) }
     val animation by viewModel.animation.collectAsState()
+
+    val even by viewModel.even.collectAsState()
+    val ifValue by viewModel.ifValue.collectAsState()
 
     if (showDialog) {
         HomeDescriptionDialog(
@@ -56,6 +62,23 @@ fun HomeRoute(
             onDismissRequest = { showDialog = false }
         )
     }
+
+    if (showAddDialog) {
+        EvenIfAddDialog(
+            onDismissRequest = { showAddDialog = false },
+            evenValue = even,
+            onEvenValueChange = viewModel::updateEven,
+            ifValue = ifValue,
+            onIfValueChange = viewModel::updateIfValue,
+            onClickConfirm = {
+//               viewModel.postEvenIf(even, ifValue)
+                viewModel.resetTextField()
+                showAddDialog = false
+            },
+            onClickCancel = { showAddDialog = false }
+        )
+    }
+
     Box {
         Image(
             modifier = Modifier.fillMaxSize(),
@@ -67,6 +90,7 @@ fun HomeRoute(
                 showDialog = true
             },
             onNavigateToStorage = onNavigateToStorage,
+            onClickAdd = { showAddDialog = true },
             animation = animation,
             modifier = Modifier
                 .fillMaxSize()
@@ -83,6 +107,7 @@ fun HomeRoute(
 private fun HomeScreen(
     onClickDescription: () -> Unit,
     onNavigateToStorage: () -> Unit,
+    onClickAdd: () -> Unit,
     animation: CrystalAnimation,
     modifier: Modifier = Modifier,
 ) {
@@ -162,7 +187,8 @@ private fun HomeScreen(
                             SopkathonAndroidTeam3Theme.colors.gradientBlue
                         )
                     )
-                ),
+                )
+                .clickable { onClickAdd() },
             contentAlignment = Alignment.Center
         ) {
             Text(
