@@ -1,4 +1,4 @@
-package com.example.sopkathon_android_team3.presentation
+package com.example.sopkathon_android_team3.presentation.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
