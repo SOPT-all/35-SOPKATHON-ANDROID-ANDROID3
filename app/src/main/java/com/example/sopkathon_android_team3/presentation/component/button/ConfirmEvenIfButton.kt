@@ -13,15 +13,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.sopkathon_android_team3.ui.theme.Black
 import com.example.sopkathon_android_team3.ui.theme.Purple3
 import com.example.sopkathon_android_team3.ui.theme.SopkathonAndroidTeam3Theme
 import com.example.sopkathon_android_team3.ui.theme.StrokePurple
 import com.example.sopkathon_android_team3.ui.theme.White
-import com.example.sopkathon_android_team3.ui.theme.defaultSopkathonAndroidTeam3Typography
 
 @Composable
 fun ConfirmEvenIfButton(
@@ -42,7 +39,7 @@ fun ConfirmEvenIfButton(
             style = SopkathonAndroidTeam3Theme.typography.head5Bold18,
             color = White,
             modifier = Modifier
-                .padding(vertical = 14.dp)
+                .padding(horizontal = 20.dp, vertical = 10.dp)
                 .clickable { onClick() }
         )
     }
