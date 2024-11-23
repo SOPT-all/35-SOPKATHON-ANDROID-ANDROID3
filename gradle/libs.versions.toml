@@ -18,6 +18,7 @@ timber = "5.0.1"
 coil = "2.2.2"
 androidxComposeNavigation = "2.8.2"
 
+lottieCompose = "6.6.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -45,6 +46,7 @@ retrofit-kotlin-serialization-converter = { group = "com.jakewharton.retrofit", 
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
 coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+lottie-compose = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottieCompose" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
