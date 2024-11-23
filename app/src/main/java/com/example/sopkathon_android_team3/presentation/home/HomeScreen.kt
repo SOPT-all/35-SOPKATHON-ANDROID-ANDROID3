@@ -1,7 +1,9 @@
 package com.example.sopkathon_android_team3.presentation.home
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -30,14 +32,17 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.sopkathon_android_team3.R
 import com.example.sopkathon_android_team3.presentation.component.BasicLottie
+import com.example.sopkathon_android_team3.presentation.component.dialog.EvenIfAddDialog
 import com.example.sopkathon_android_team3.presentation.home.component.HomeDescriptionDialog
 import com.example.sopkathon_android_team3.presentation.type.CrystalAnimation
 import com.example.sopkathon_android_team3.ui.theme.SOPKATHON_ANDROID_TEAM3Theme
 import com.example.sopkathon_android_team3.ui.theme.SopkathonAndroidTeam3Theme
 import com.example.sopkathon_android_team3.util.modifier.noRippleClickable
+import kotlinx.coroutines.delay
 
 @Composable
 fun HomeRoute(
@@ -47,7 +52,11 @@ fun HomeRoute(
 
 ) {
     var showDialog by remember { mutableStateOf(false) }
-    val animation by viewModel.animation.collectAsState()
+    var showAddDialog by remember { mutableStateOf(false) }
+    val animation by viewModel.animation.collectAsStateWithLifecycle()
+
+    val even by viewModel.even.collectAsState()
+    val ifValue by viewModel.ifValue.collectAsState()
 
     if (showDialog) {
         HomeDescriptionDialog(
@@ -56,6 +65,23 @@ fun HomeRoute(
             onDismissRequest = { showDialog = false }
         )
     }
+
+    if (showAddDialog) {
+        EvenIfAddDialog(
+            onDismissRequest = { showAddDialog = false },
+            evenValue = even,
+            onEvenValueChange = viewModel::updateEven,
+            ifValue = ifValue,
+            onIfValueChange = viewModel::updateIfValue,
+            onClickConfirm = {
+                viewModel.postBeadContent()
+                showAddDialog = false
+                viewModel.resetTextField()
+            },
+            onClickCancel = { showAddDialog = false }
+        )
+    }
+
     Box {
         Image(
             modifier = Modifier.fillMaxSize(),
@@ -67,6 +93,7 @@ fun HomeRoute(
                 showDialog = true
             },
             onNavigateToStorage = onNavigateToStorage,
+            onClickAdd = { showAddDialog = true },
             animation = animation,
             modifier = Modifier
                 .fillMaxSize()
@@ -74,15 +101,14 @@ fun HomeRoute(
         )
     }
 
-    LaunchedEffect(Unit) {
-        viewModel.fetchAnimation(count = 3)
-    }
+
 }
 
 @Composable
 private fun HomeScreen(
     onClickDescription: () -> Unit,
     onNavigateToStorage: () -> Unit,
+    onClickAdd: () -> Unit,
     animation: CrystalAnimation,
     modifier: Modifier = Modifier,
 ) {
@@ -141,8 +167,7 @@ private fun HomeScreen(
             }
         }
         Box(
-            modifier = modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
+            modifier = modifier.fillMaxSize()
         ) {
             BasicLottie(
                 crystalAnimation = animation.jsonFileName
@@ -162,7 +187,8 @@ private fun HomeScreen(
                             SopkathonAndroidTeam3Theme.colors.gradientBlue
                         )
                     )
-                ),
+                )
+                .clickable { onClickAdd() },
             contentAlignment = Alignment.Center
         ) {
             Text(
