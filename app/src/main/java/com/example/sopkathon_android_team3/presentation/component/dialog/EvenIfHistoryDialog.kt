@@ -1,37 +1,38 @@
 package com.example.sopkathon_android_team3.presentation.component.dialog
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.compose.ui.window.SecureFlagPolicy
-import com.example.sopkathon_android_team3.R
 import com.example.sopkathon_android_team3.presentation.component.button.ConfirmEvenIfButton
-import com.example.sopkathon_android_team3.ui.theme.Black
-import com.example.sopkathon_android_team3.ui.theme.defaultSopkathonAndroidTeam3Typography
+import com.example.sopkathon_android_team3.ui.theme.Gray5
+import com.example.sopkathon_android_team3.ui.theme.Gray9
+import com.example.sopkathon_android_team3.ui.theme.Purple2
+import com.example.sopkathon_android_team3.ui.theme.SopkathonAndroidTeam3Theme
+import com.example.sopkathon_android_team3.ui.theme.StrokeGray
+import com.example.sopkathon_android_team3.ui.theme.White
 
 @Composable
 fun EvenIfHistoryDialog(
     onDismissRequest: () -> Unit,
-    description1: String,
-    description2: String,
+    evenText: String,
+    ifText: String,
     onClickConfirm: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Dialog(
         onDismissRequest = onDismissRequest,
@@ -43,91 +44,86 @@ fun EvenIfHistoryDialog(
             decorFitsSystemWindows = true, // 다이얼로그 시스템 창 경계를 고려
         )
     ) {
-        val configuration = LocalConfiguration.current
-        val screenHeight = configuration.screenHeightDp.dp
-        val dialogHeight = screenHeight * 0.5f
-
         Column(
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxWidth()
-                .height(dialogHeight)
+                .clip(RoundedCornerShape(16.dp))
+                .border(2.dp, Gray5, RoundedCornerShape(16.dp))
                 .background(
-                    color = Color.White,
+                    color = Gray9,
                 ),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
+            Text(
+                text = "비록",
+                style = SopkathonAndroidTeam3Theme.typography.head3Bold23,
+                color = White,
+                modifier = Modifier
+                    .padding(top = 34.dp)
+            )
 
             Box(
-                modifier = Modifier.fillMaxWidth()
+               modifier = Modifier
+                   .fillMaxWidth()
+                   .padding(horizontal = 20.dp)
+                   .padding(top = 20.dp)
+                   .clip(RoundedCornerShape(8.dp))
+                   .border(2.dp, StrokeGray, RoundedCornerShape(8.dp))
+                   .background(Purple2),
             ) {
-                Image(
-                    painter = painterResource(R.drawable.ic_launcher_background),
-                    contentDescription = "",
+                Text(
+                    text = evenText,
+                    style = SopkathonAndroidTeam3Theme.typography.head5Bold18,
+                    color = White,
+                    textAlign = TextAlign.Center,
                     modifier = Modifier
-                        .size(40.dp)
-                        .align(Alignment.CenterEnd)
-                        .padding(top = 16.dp, end = 16.dp)
+                        .fillMaxWidth()
+                        .padding(vertical = 14.dp)
+                )
+            }
+            
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 20.dp)
+                    .padding(top = 33.dp)
+                    .clip(RoundedCornerShape(8.dp))
+                    .border(2.dp,StrokeGray, RoundedCornerShape(8.dp))
+                    .background(Purple2),
+            ) {
+                Text(
+                    text = ifText,
+                    style = SopkathonAndroidTeam3Theme.typography.head5Bold18,
+                    color = White,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 58.dp)
                 )
             }
 
-            Text(
-                text = "과거의 Even if",
-                style = defaultSopkathonAndroidTeam3Typography.body1SemiBold16,
-                color = Black,
-                modifier = Modifier
-                    .padding(top = 29.dp)
-            )
-
-            Text(
-                text = "비록",
-                style = defaultSopkathonAndroidTeam3Typography.body1SemiBold16,
-                color = Black,
-                modifier = Modifier
-                    .padding(top = 41.dp)
-            )
-
-            Text(
-                text = description1,
-                style = defaultSopkathonAndroidTeam3Typography.body1SemiBold16,
-                color = Black,
-                modifier = Modifier
-                    .padding(top = 18.dp)
-            )
-
-            Text(
-                text = "일지라도",
-                style = defaultSopkathonAndroidTeam3Typography.body1SemiBold16,
-                color = Black,
-                modifier = Modifier
-                    .padding(top = 18.dp)
-            )
-
-            Text(
-                text = description2,
-                style = defaultSopkathonAndroidTeam3Typography.body1SemiBold16,
-                color = Black,
-                modifier = Modifier
-                    .padding(top = 18.dp)
-            )
-            Spacer(modifier = Modifier.weight(1f))
-
             ConfirmEvenIfButton(
+                buttonText = "확인",
                 onClick = onClickConfirm,
                 modifier = Modifier
-                    .padding(horizontal = 20.dp)
-                    .padding(bottom = 26.dp)
+                    .padding(horizontal = 20.dp, vertical = 34.dp)
             )
         }
     }
 }
 
-@Preview(showSystemUi = true)
+@Preview(
+    showBackground = true,
+    showSystemUi = true
+)
 @Composable
 fun EvenIfHistoryDialogPreview() {
     EvenIfHistoryDialog(
         onDismissRequest = {},
-        description1 = "잠긴 시간 동안 취소하기 어려워요",
-        description2 = "취소",
+        evenText = "잠긴 시간 동안 취소하기 어려워요",
+        ifText = "취소",
         onClickConfirm = {},
+        modifier = Modifier
+            .padding(horizontal = 20.dp)
     )
 }
