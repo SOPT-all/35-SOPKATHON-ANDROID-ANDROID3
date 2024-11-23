@@ -97,7 +97,8 @@ val defaultSopkathonAndroidTeam3Typography =
         body4SemiBold11 =
         TextStyle(
             fontFamily = PretendardSemiBold,
-            fontSize = 11.sp
+            fontSize = 11.sp,
+            lineHeight = 20.sp
         ),
     )
 

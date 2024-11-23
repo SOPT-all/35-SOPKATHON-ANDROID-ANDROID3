@@ -82,6 +82,6 @@ dependencies {
     // Coil
     implementation(libs.coil)
 
-    //lottie
-    implementation(libs.lottie.compose)
+    // Navigation
+    implementation(libs.androidx.compose.navigation)
 }
