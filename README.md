@@ -29,7 +29,7 @@
 |<img src="https://avatars.githubusercontent.com/u/131870144?v=4" width="128" />|<img src="https://avatars.githubusercontent.com/u/52846796?v=4" width="128" />|<img src="https://avatars.githubusercontent.com/u/127933902?v=4" width="128" />|<img src="https://avatars.githubusercontent.com/u/118499294?v=4" width="128" />| 
 |:---------:|:---------:|:---------:|:---------:|
 |[김윤서](https://github.com/yskim6772)|[김종명](https://github.com/jm991014)|[이승범](https://github.com/beom84)|[김성민](https://github.com/1971123-seongmin)|
-| `Home Screen` | `Storage Screen`, `Color System`, `Single Activity Architecture` | `Display Screen`, `Font System` | `Record Screen`|
+| `Storage Screen` | `Home Screen`, `Color System`, `Single Activity Architecture` | `Display Screen`, `Font System` | `Record Screen`|
 
 <br>
 
@@ -80,7 +80,19 @@ Issue별로 생성한 `feat` 브랜치에서 작업 후 `develop` 브랜치로 M
 
 <br>
 
+## 시연 영상
+
+
+https://github.com/user-attachments/assets/c1479b91-0421-4c2b-afe7-ede55e278bc7
+
+
+
 ## 사진
 #### 😸 Before
 
-<img src="https://github.com/user-attachments/assets/8d3d0d9f-5fdd-457a-9bd0-7fdd3979da9e" width="600"/>
+<img src="https://github.com/user-attachments/assets/8d3d0d9f-5fdd-457a-9bd0-7fdd3979da9e" width="400"/>
+
+#### 😸 After
+
+<img src="https://github.com/user-attachments/assets/fc2b0f84-7e42-44b7-80b2-5bf75e911d7a" width="400"/>
+
