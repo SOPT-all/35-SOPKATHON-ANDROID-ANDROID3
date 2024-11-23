@@ -120,6 +120,7 @@ private fun StorageScreen(
                         currentImage.value = when (clickCount.value) {
                             1 -> R.drawable.ic_king_bead_green_center
                             2 -> R.drawable.ic_king_bead_blue_center
+                            3 -> R.drawable.ic_king_bead_last
                             else -> R.drawable.ic_king_bead_purple_center
                         }
                     }
