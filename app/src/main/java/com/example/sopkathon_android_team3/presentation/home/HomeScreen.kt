@@ -1,5 +1,6 @@
 package com.example.sopkathon_android_team3.presentation.home
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -31,6 +32,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.sopkathon_android_team3.R
 import com.example.sopkathon_android_team3.presentation.component.BasicLottie
@@ -40,6 +42,7 @@ import com.example.sopkathon_android_team3.presentation.type.CrystalAnimation
 import com.example.sopkathon_android_team3.ui.theme.SOPKATHON_ANDROID_TEAM3Theme
 import com.example.sopkathon_android_team3.ui.theme.SopkathonAndroidTeam3Theme
 import com.example.sopkathon_android_team3.util.modifier.noRippleClickable
+import kotlinx.coroutines.delay
 
 @Composable
 fun HomeRoute(
@@ -50,7 +53,7 @@ fun HomeRoute(
 ) {
     var showDialog by remember { mutableStateOf(false) }
     var showAddDialog by remember { mutableStateOf(false) }
-    val animation by viewModel.animation.collectAsState()
+    val animation by viewModel.animation.collectAsStateWithLifecycle()
 
     val even by viewModel.even.collectAsState()
     val ifValue by viewModel.ifValue.collectAsState()
@@ -71,9 +74,9 @@ fun HomeRoute(
             ifValue = ifValue,
             onIfValueChange = viewModel::updateIfValue,
             onClickConfirm = {
-//               viewModel.postEvenIf(even, ifValue)
-                viewModel.resetTextField()
+                viewModel.postBeadContent()
                 showAddDialog = false
+                viewModel.resetTextField()
             },
             onClickCancel = { showAddDialog = false }
         )
@@ -98,9 +101,7 @@ fun HomeRoute(
         )
     }
 
-    LaunchedEffect(Unit) {
-        viewModel.fetchAnimation(count = 3)
-    }
+
 }
 
 @Composable
@@ -166,8 +167,7 @@ private fun HomeScreen(
             }
         }
         Box(
-            modifier = modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
+            modifier = modifier.fillMaxSize()
         ) {
             BasicLottie(
                 crystalAnimation = animation.jsonFileName
