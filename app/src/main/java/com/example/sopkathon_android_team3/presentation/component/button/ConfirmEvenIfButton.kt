@@ -17,6 +17,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.sopkathon_android_team3.ui.theme.Black
+import com.example.sopkathon_android_team3.ui.theme.Purple3
+import com.example.sopkathon_android_team3.ui.theme.SopkathonAndroidTeam3Theme
+import com.example.sopkathon_android_team3.ui.theme.StrokePurple
 import com.example.sopkathon_android_team3.ui.theme.White
 import com.example.sopkathon_android_team3.ui.theme.defaultSopkathonAndroidTeam3Typography
 
@@ -30,16 +33,16 @@ fun ConfirmEvenIfButton(
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(12.dp))
-            .border(2.dp, Color.Gray, RoundedCornerShape(12.dp))
-            .background(Black),
+            .border(2.dp, StrokePurple, RoundedCornerShape(12.dp))
+            .background(Purple3),
         contentAlignment = Alignment.Center
     ) {
         Text(
             text = buttonText,
-            style = defaultSopkathonAndroidTeam3Typography.head5Bold18,
+            style = SopkathonAndroidTeam3Theme.typography.head5Bold18,
             color = White,
             modifier = Modifier
-                .padding(vertical = 8.dp)
+                .padding(vertical = 14.dp)
                 .clickable { onClick() }
         )
     }
