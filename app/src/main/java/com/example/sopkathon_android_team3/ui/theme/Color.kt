@@ -9,6 +9,8 @@ val Purple = Color(0xFF331046)
 val Purple2 = Color(0xFF5800D3)
 val Purple3 = Color(0xFF230251)
 val Purple4 = Color(0xFF6100EE)
+val GradientBlue = Color(0xFF4B04FF)
+val GradientPurple = Color(0xFF801BFF)
 val StrokePurple = Color(0xFF8348E7)
 val StrokeGray = Color(0xFFC3C3C3)
 val White = Color(0xFFFFFFFF)
@@ -31,6 +33,8 @@ data class SopkathonAndroidTeam3Colors(
     val purple2: Color,
     val purple3: Color,
     val purple4: Color,
+    val gradientBlue: Color,
+    val gradientPurple: Color,
     val strokePurple: Color,
     val strokeGray: Color,
     val white: Color,
@@ -53,6 +57,8 @@ val defaultSopkathonAndroidTeam3Colors = SopkathonAndroidTeam3Colors(
     purple2 = Purple2,
     purple3 = Purple3,
     purple4 = Purple4,
+    gradientBlue = GradientBlue,
+    gradientPurple = GradientPurple,
     strokePurple = StrokePurple,
     strokeGray = StrokeGray,
     white = White,
