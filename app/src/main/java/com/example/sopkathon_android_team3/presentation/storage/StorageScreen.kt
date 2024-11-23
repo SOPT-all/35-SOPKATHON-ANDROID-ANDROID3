@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -19,7 +21,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.sopkathon_android_team3.R
+import com.example.sopkathon_android_team3.presentation.component.dialog.EvenIfHistoryDialog
+import com.example.sopkathon_android_team3.presentation.component.dialog.HistoryViewModel
 import com.example.sopkathon_android_team3.ui.theme.SOPKATHON_ANDROID_TEAM3Theme
 import com.example.sopkathon_android_team3.ui.theme.SopkathonAndroidTeam3Theme
 import com.example.sopkathon_android_team3.util.modifier.noRippleClickable
@@ -38,9 +43,14 @@ fun StorageRoute(
 @Composable
 private fun StorageScreen(
     onNavigateToHome: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    viewModel: HistoryViewModel = viewModel()
 ) {
+    val beadData by viewModel.beadDataState.collectAsState()
+
     val currentImage = remember { mutableStateOf(R.drawable.ic_king_bead_purple_center) }
+    val clickCount = remember { mutableStateOf(0) }
+    val isDialogVisible = remember { mutableStateOf(false) }
 
     Column(
         modifier = modifier
@@ -69,7 +79,12 @@ private fun StorageScreen(
         Image(
             painter = painterResource(currentImage.value),
             contentDescription = "king bead",
-            modifier = modifier.fillMaxWidth()
+            modifier = modifier
+                .fillMaxWidth()
+                .noRippleClickable {
+                    isDialogVisible.value = true
+                    viewModel.getRandomBeadContent(1)
+                }
         )
 
         Spacer(modifier = Modifier.height(46.dp))
@@ -84,24 +99,44 @@ private fun StorageScreen(
                 painter = painterResource(R.drawable.ic_arrow_left_purple),
                 contentDescription = "Storage left arrow",
                 modifier = modifier
-                    .noRippleClickable { currentImage.value = R.drawable.ic_king_bead_purple_center }
+                    .noRippleClickable {
+                        clickCount.value -= 1
+
+                        currentImage.value = when (clickCount.value) {
+                            1 -> R.drawable.ic_king_bead_green_center
+                            2 -> R.drawable.ic_king_bead_blue_center
+                            else -> R.drawable.ic_king_bead_purple_center
+                        }
+                    }
             )
 
             Image(
                 painter = painterResource(R.drawable.ic_arrow_right_purple),
                 contentDescription = "Storage right arrow",
                 modifier = modifier
-                    .noRippleClickable { currentImage.value = R.drawable.ic_king_bead_green_center }
+                    .noRippleClickable {
+                        clickCount.value += 1
+
+                        currentImage.value = when (clickCount.value) {
+                            1 -> R.drawable.ic_king_bead_green_center
+                            2 -> R.drawable.ic_king_bead_blue_center
+                            else -> R.drawable.ic_king_bead_purple_center
+                        }
+                    }
             )
         }
 
         Spacer(modifier = Modifier.weight(1f))
     }
-//    Text(
-//        modifier = modifier.clickable(onClick = onNavigateToHome),
-//        text = "This is Storage Screen",
-//        color = SopkathonAndroidTeam3Theme.colors.white
-//    )
+
+    if (isDialogVisible.value) {
+        EvenIfHistoryDialog(
+            onDismissRequest = { isDialogVisible.value = false },
+            evenText = beadData?.data?.content1 ?: "",
+            ifText = beadData?.data?.content2 ?: "",
+            onClickConfirm = { isDialogVisible.value = false }
+        )
+    }
 }
 
 @Preview
