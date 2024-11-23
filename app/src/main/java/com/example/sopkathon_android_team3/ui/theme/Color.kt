@@ -4,14 +4,8 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
-// TODO: Design System 확정나면 추가 예정
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
-
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+val Pink = Color(0xFFC26ABD)
+val Purple = Color(0xFF331046)
 
 val White = Color(0xFFFFFFFF)
 val Gray1 = Color(0xFFF9F9F9)
@@ -27,6 +21,9 @@ val Black = Color(0xFF222222)
 
 @Immutable
 data class SopkathonAndroidTeam3Colors(
+    val pink: Color,
+    val purple: Color,
+
     val white: Color,
     val gray1: Color,
     val gray2: Color,
@@ -41,6 +38,9 @@ data class SopkathonAndroidTeam3Colors(
 )
 
 val defaultSopkathonAndroidTeam3Colors = SopkathonAndroidTeam3Colors(
+    pink = Pink,
+    purple = Purple,
+
     white = White,
     gray1 = Gray1,
     gray2 = Gray2,
