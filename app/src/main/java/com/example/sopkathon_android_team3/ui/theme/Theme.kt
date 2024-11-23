@@ -14,18 +14,21 @@ object SopkathonAndroidTeam3Theme {
         @Composable
         @ReadOnlyComposable
         get() = LocalSopkathonAndroidTeam3Colors.current
-    // TODO: Typography 추가
+    val typography: SopkathonAndroidTeam3Typography
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalSopkathonAndroidTeam3Typography.current
 }
 
 @Composable
 fun ProvideSopkathonAndroidTeam3ColorsAndTypography(
     colors: SopkathonAndroidTeam3Colors,
-    // TODO: Typography 추가
+    typography: SopkathonAndroidTeam3Typography,
     content: @Composable () -> Unit
 ) {
     CompositionLocalProvider(
         LocalSopkathonAndroidTeam3Colors provides colors,
-        // TODO: Typography 추가
+        LocalSopkathonAndroidTeam3Typography provides typography,
         content = content
     )
 }
@@ -35,8 +38,8 @@ fun SOPKATHON_ANDROID_TEAM3Theme(
     content: @Composable () -> Unit
 ) {
     ProvideSopkathonAndroidTeam3ColorsAndTypography(
-        colors = defaultSopkathonAndroidTeam3Colors
-        // TODO: Typography 추가
+        colors = defaultSopkathonAndroidTeam3Colors,
+        typography = defaultSopkathonAndroidTeam3Typography
     ) {
         val view = LocalView.current
         if (!view.isInEditMode) {
@@ -47,8 +50,6 @@ fun SOPKATHON_ANDROID_TEAM3Theme(
             }
         }
         MaterialTheme(
-            typography = Typography,
-            // TODO: Typography 제거
             content = content
         )
     }
