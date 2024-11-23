@@ -24,11 +24,11 @@ import androidx.compose.ui.window.SecureFlagPolicy
 import com.example.sopkathon_android_team3.R
 import com.example.sopkathon_android_team3.presentation.component.button.ConfirmEvenIfButton
 import com.example.sopkathon_android_team3.ui.theme.Black
+import com.example.sopkathon_android_team3.ui.theme.defaultSopkathonAndroidTeam3Typography
 
 @Composable
 fun EvenIfHistoryDialog(
     onDismissRequest: () -> Unit,
-    title: String,
     description1: String,
     description2: String,
     onClickConfirm: () -> Unit,
@@ -72,7 +72,7 @@ fun EvenIfHistoryDialog(
 
             Text(
                 text = "과거의 Even if",
-                //style = defaultSopkathonAndroidTeam3Typography.body1SemiBold16,
+                style = defaultSopkathonAndroidTeam3Typography.body1SemiBold16,
                 color = Black,
                 modifier = Modifier
                     .padding(top = 29.dp)
@@ -80,7 +80,7 @@ fun EvenIfHistoryDialog(
 
             Text(
                 text = "비록",
-                //style = defaultSopkathonAndroidTeam3Typography.body1SemiBold16,
+                style = defaultSopkathonAndroidTeam3Typography.body1SemiBold16,
                 color = Black,
                 modifier = Modifier
                     .padding(top = 41.dp)
@@ -88,7 +88,7 @@ fun EvenIfHistoryDialog(
 
             Text(
                 text = description1,
-                //style = defaultSopkathonAndroidTeam3Typography.body1SemiBold16,
+                style = defaultSopkathonAndroidTeam3Typography.body1SemiBold16,
                 color = Black,
                 modifier = Modifier
                     .padding(top = 18.dp)
@@ -96,7 +96,7 @@ fun EvenIfHistoryDialog(
 
             Text(
                 text = "일지라도",
-                //style = defaultSopkathonAndroidTeam3Typography.body1SemiBold16,
+                style = defaultSopkathonAndroidTeam3Typography.body1SemiBold16,
                 color = Black,
                 modifier = Modifier
                     .padding(top = 18.dp)
@@ -104,7 +104,7 @@ fun EvenIfHistoryDialog(
 
             Text(
                 text = description2,
-                //style = defaultSopkathonAndroidTeam3Typography.body1SemiBold16,
+                style = defaultSopkathonAndroidTeam3Typography.body1SemiBold16,
                 color = Black,
                 modifier = Modifier
                     .padding(top = 18.dp)
@@ -126,7 +126,6 @@ fun EvenIfHistoryDialog(
 fun EvenIfHistoryDialogPreview() {
     EvenIfHistoryDialog(
         onDismissRequest = {},
-        title = "목표를 입력하세요",
         description1 = "잠긴 시간 동안 취소하기 어려워요",
         description2 = "취소",
         onClickConfirm = {},

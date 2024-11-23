@@ -16,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.sopkathon_android_team3.ui.theme.Black
 import com.example.sopkathon_android_team3.ui.theme.White
+import com.example.sopkathon_android_team3.ui.theme.defaultSopkathonAndroidTeam3Typography
 
 @Composable
 fun ConfirmEvenIfButton(
@@ -31,7 +32,7 @@ fun ConfirmEvenIfButton(
     ) {
         Text(
             text = "완료",
-            //style = defaultSopkathonAndroidTeam3Typography.body1SemiBold16,
+            style = defaultSopkathonAndroidTeam3Typography.body1SemiBold16,
             color = White,
             modifier = Modifier
                 .padding(vertical = 8.dp)

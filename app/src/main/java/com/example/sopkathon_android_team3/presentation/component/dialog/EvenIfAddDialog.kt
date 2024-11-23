@@ -36,6 +36,7 @@ import androidx.compose.ui.window.SecureFlagPolicy
 import com.example.sopkathon_android_team3.R
 import com.example.sopkathon_android_team3.presentation.component.button.ConfirmEvenIfButton
 import com.example.sopkathon_android_team3.ui.theme.Black
+import com.example.sopkathon_android_team3.ui.theme.defaultSopkathonAndroidTeam3Typography
 
 @Composable
 fun EvenIfAddDialog(
@@ -87,7 +88,7 @@ fun EvenIfAddDialog(
 
             Text(
                 text = "오늘의 Even If",
-                //style = defaultSopkathonAndroidTeam3Typography.head4Bold20,
+                style = defaultSopkathonAndroidTeam3Typography.head4Bold20,
                 color = Black,
                 modifier = Modifier
                     .padding(top = 29.dp)
@@ -95,7 +96,7 @@ fun EvenIfAddDialog(
 
             Text(
                 text = "비록",
-                //style = defaultSopkathonAndroidTeam3Typography.body1SemiBold16,
+                style = defaultSopkathonAndroidTeam3Typography.body1SemiBold16,
                 color = Black,
                 modifier = Modifier
                     .padding(top = 41.dp)
@@ -135,7 +136,7 @@ fun EvenIfAddDialog(
 
             Text(
                 text = "일지라도",
-                //style = defaultSopkathonAndroidTeam3Typography.body1SemiBold16,
+                style = defaultSopkathonAndroidTeam3Typography.body1SemiBold16,
                 color = Black,
                 modifier = Modifier
                     .padding(top = 10.dp)
