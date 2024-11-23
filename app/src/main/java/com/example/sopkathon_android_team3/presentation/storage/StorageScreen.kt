@@ -12,7 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,8 +40,7 @@ private fun StorageScreen(
     onNavigateToHome: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-
-    val currentImage = remember { mutableIntStateOf(R.drawable.ic_king_bead_purple_center) }
+    val currentImage = remember { mutableStateOf(R.drawable.ic_king_bead_purple_center) }
 
     Column(
         modifier = modifier
