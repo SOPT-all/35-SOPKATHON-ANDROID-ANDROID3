@@ -5,4 +5,7 @@
     <string name="home_description_dialog_title1">어려운 상황 속에서</string>
     <string name="home_description_dialog_title2">나는 더 강해진다!</string>
     <string name="home_description_dialog_content">역경을 마주할 때마다 나는 더 강해지고 있어\n지금 내 앞에 닥친 모든 상황을\n나만의 유리구슬로 만들어 나아가 보자!</string>
+
+    <string name="home_crystal_ball">수정구</string>
+    <string name="home_crystal_storage">보관함</string>
 </resources>
