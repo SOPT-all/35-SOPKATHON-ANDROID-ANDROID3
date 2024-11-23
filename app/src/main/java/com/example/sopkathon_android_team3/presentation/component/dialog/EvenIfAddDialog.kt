@@ -26,6 +26,7 @@ import com.example.sopkathon_android_team3.presentation.component.button.Confirm
 import com.example.sopkathon_android_team3.ui.theme.Gray6
 import com.example.sopkathon_android_team3.ui.theme.Purple4
 import com.example.sopkathon_android_team3.ui.theme.SOPKATHON_ANDROID_TEAM3Theme
+import com.example.sopkathon_android_team3.ui.theme.SopkathonAndroidTeam3Theme
 import com.example.sopkathon_android_team3.ui.theme.White
 import com.example.sopkathon_android_team3.ui.theme.defaultSopkathonAndroidTeam3Typography
 
@@ -36,7 +37,7 @@ fun EvenIfAddDialog(
     onEvenValueChange: (String) -> Unit,
     ifValue: String,
     onIfValueChange: (String) -> Unit,
-    onClickConfirm: (String, String) -> Unit,
+    onClickConfirm: () -> Unit,
     onClickCancel: () -> Unit
 ) {
     Dialog(
@@ -73,7 +74,7 @@ fun EvenIfAddDialog(
 
             Text(
                 text = "비록",
-               style = defaultSopkathonAndroidTeam3Typography.head3Bold23,
+                style = SopkathonAndroidTeam3Theme.typography.head3Bold23,
                 color = White,
             )
 
@@ -81,33 +82,35 @@ fun EvenIfAddDialog(
                 value = evenValue,
                 hintText = "절망적인 상황이지만",
                 onValueChange = onEvenValueChange,
-                inputTextStyle = defaultSopkathonAndroidTeam3Typography.head5Bold18,
-                hintTextStyle = defaultSopkathonAndroidTeam3Typography.head5Bold18,
+                inputTextStyle = SopkathonAndroidTeam3Theme.typography.head5Bold18,
+                hintTextStyle = SopkathonAndroidTeam3Theme.typography.head5Bold18,
                 paddingTop = 19.dp,
-                paddingHorizontal = 40.dp,
+                paddingHorizontal = 30.dp,
                 internalPaddingVertical = 14.dp,
                 internalPaddingHorizontal = 48.dp,
                 inputTextColor = White,
                 hintTextColor = Gray6,
+                background = SopkathonAndroidTeam3Theme.colors.purple2
             )
 
             DialogTextField(
                 value = ifValue,
                 hintText = "긍정적인 결과가 나타났다",
                 onValueChange = onIfValueChange,
-                inputTextStyle = defaultSopkathonAndroidTeam3Typography.head5Bold18,
-                hintTextStyle = defaultSopkathonAndroidTeam3Typography.head5Bold18,
+                inputTextStyle = SopkathonAndroidTeam3Theme.typography.head5Bold18,
+                hintTextStyle = SopkathonAndroidTeam3Theme.typography.head5Bold18,
                 paddingTop = 31.dp,
-                paddingHorizontal = 40.dp,
+                paddingHorizontal = 30.dp,
                 internalPaddingVertical = 57.dp,
                 internalPaddingHorizontal = 31.dp,
                 inputTextColor = White,
                 hintTextColor = Gray6,
+                background = SopkathonAndroidTeam3Theme.colors.purple2
             )
 
             ConfirmEvenIfButton(
                 buttonText = "완료",
-                onClick = { onClickConfirm(evenValue, ifValue) },
+                onClick = { onClickConfirm() },
                 modifier = Modifier
                     .padding(horizontal = 20.dp)
                     .padding(top = 42.dp, bottom = 22.dp)
@@ -116,21 +119,21 @@ fun EvenIfAddDialog(
     }
 }
 
-@Preview(
-    showSystemUi = true,
-    showBackground = true
-)
-@Composable
-fun BasicDialogPreview() {
-    SOPKATHON_ANDROID_TEAM3Theme {
-    EvenIfAddDialog(
-        onDismissRequest = {},
-        evenValue = "d",
-        onEvenValueChange = {},
-        ifValue = "",
-        onIfValueChange = {},
-        onClickConfirm = { even, ifValue -> println("Even: $even, If: $ifValue") },
-        onClickCancel = {}
-    )
-        }
-}
+//@Preview(
+//    showSystemUi = true,
+//    showBackground = true
+//)
+//@Composable
+//fun BasicDialogPreview() {
+//    SOPKATHON_ANDROID_TEAM3Theme {
+//    EvenIfAddDialog(
+//        onDismissRequest = {},
+//        evenValue = "d",
+//        onEvenValueChange = {},
+//        ifValue = "",
+//        onIfValueChange = {},
+//        onClickConfirm = { println("Even: $even, If: $ifValue") },
+//        onClickCancel = {}
+//    )
+//        }
+//}

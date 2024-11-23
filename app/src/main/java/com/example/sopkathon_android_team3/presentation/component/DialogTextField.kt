@@ -16,12 +16,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnitType.Companion.Sp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.sopkathon_android_team3.ui.theme.Black
 import com.example.sopkathon_android_team3.ui.theme.Gray1
 import com.example.sopkathon_android_team3.ui.theme.Gray6
 import com.example.sopkathon_android_team3.ui.theme.Purple4
+import com.example.sopkathon_android_team3.ui.theme.SopkathonAndroidTeam3Theme
 import com.example.sopkathon_android_team3.ui.theme.StrokeGray
 import com.example.sopkathon_android_team3.ui.theme.White
 import com.example.sopkathon_android_team3.ui.theme.defaultSopkathonAndroidTeam3Typography
@@ -30,6 +32,7 @@ import com.example.sopkathon_android_team3.ui.theme.defaultSopkathonAndroidTeam3
 fun DialogTextField(
     value: String,
     hintText: String,
+    background: Color,
     onValueChange: (String) -> Unit,
     inputTextStyle: TextStyle = defaultSopkathonAndroidTeam3Typography.head5Bold18,
     hintTextStyle: TextStyle = defaultSopkathonAndroidTeam3Typography.head5Bold18,
@@ -46,8 +49,8 @@ fun DialogTextField(
             .padding(horizontal = paddingHorizontal)
             .padding(top = paddingTop)
             .clip(RoundedCornerShape(8.dp))
-            .border(2.dp, StrokeGray, RoundedCornerShape(8.dp))
-            .background(Purple4),
+            .background(background)
+            .border(2.dp, StrokeGray, RoundedCornerShape(8.dp)),
         contentAlignment = Alignment.Center
     ) {
         if (value.isEmpty()) {
@@ -78,6 +81,7 @@ fun DialogTextField(
 fun DialogTextFieldPreview() {
     DialogTextField(
         value = "text",
+        background = SopkathonAndroidTeam3Theme.colors.white,
         hintText = "Enter your text...",
         onValueChange = {  },
         inputTextStyle = TextStyle(fontSize = 16.sp),
