@@ -175,7 +175,9 @@ fun EvenIfAddDialog(
             )
             Spacer(modifier = Modifier.weight(1f))
 
-            ConfirmEvenIfButton(onClick = {
+            ConfirmEvenIfButton(
+                buttonText = "완료",
+                onClick = {
                 onClickConfirm(evenValue, ifValue) // 확인 버튼 누르면 서버에 텍스트 전송
             },
                 modifier = Modifier
