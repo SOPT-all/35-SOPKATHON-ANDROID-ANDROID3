@@ -5,42 +5,27 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Create
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.compose.ui.window.SecureFlagPolicy
 import com.example.sopkathon_android_team3.R
 import com.example.sopkathon_android_team3.presentation.component.DialogTextField
 import com.example.sopkathon_android_team3.presentation.component.button.ConfirmEvenIfButton
-import com.example.sopkathon_android_team3.ui.theme.Black
 import com.example.sopkathon_android_team3.ui.theme.Gray6
 import com.example.sopkathon_android_team3.ui.theme.Purple4
+import com.example.sopkathon_android_team3.ui.theme.SOPKATHON_ANDROID_TEAM3Theme
 import com.example.sopkathon_android_team3.ui.theme.White
 import com.example.sopkathon_android_team3.ui.theme.defaultSopkathonAndroidTeam3Typography
 
@@ -88,17 +73,16 @@ fun EvenIfAddDialog(
 
             Text(
                 text = "비록",
-               // style = defaultSopkathonAndroidTeam3Typography.head3Bold23,
+               style = defaultSopkathonAndroidTeam3Typography.head3Bold23,
                 color = White,
             )
 
-            // defaultSopkathonAndroidTeam3Typography.head5Bold18
             DialogTextField(
                 value = evenValue,
                 hintText = "절망적인 상황이지만",
                 onValueChange = onEvenValueChange,
-                inputTextStyle = TextStyle(),
-                hintTextStyle = TextStyle(),
+                inputTextStyle = defaultSopkathonAndroidTeam3Typography.head5Bold18,
+                hintTextStyle = defaultSopkathonAndroidTeam3Typography.head5Bold18,
                 paddingTop = 19.dp,
                 paddingHorizontal = 40.dp,
                 internalPaddingVertical = 14.dp,
@@ -111,8 +95,8 @@ fun EvenIfAddDialog(
                 value = ifValue,
                 hintText = "긍정적인 결과가 나타났다",
                 onValueChange = onIfValueChange,
-                inputTextStyle = TextStyle(),
-                hintTextStyle = TextStyle(),
+                inputTextStyle = defaultSopkathonAndroidTeam3Typography.head5Bold18,
+                hintTextStyle = defaultSopkathonAndroidTeam3Typography.head5Bold18,
                 paddingTop = 31.dp,
                 paddingHorizontal = 40.dp,
                 internalPaddingVertical = 57.dp,
@@ -126,14 +110,19 @@ fun EvenIfAddDialog(
                 onClick = { onClickConfirm(evenValue, ifValue) },
                 modifier = Modifier
                     .padding(horizontal = 20.dp)
+                    .padding(top = 42.dp, bottom = 22.dp)
             )
         }
     }
 }
 
-@Preview(showSystemUi = true)
+@Preview(
+    showSystemUi = true,
+    showBackground = true
+)
 @Composable
 fun BasicDialogPreview() {
+    SOPKATHON_ANDROID_TEAM3Theme {
     EvenIfAddDialog(
         onDismissRequest = {},
         evenValue = "d",
@@ -143,4 +132,5 @@ fun BasicDialogPreview() {
         onClickConfirm = { even, ifValue -> println("Even: $even, If: $ifValue") },
         onClickCancel = {}
     )
+        }
 }
