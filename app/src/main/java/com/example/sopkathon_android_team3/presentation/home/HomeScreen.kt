@@ -1,27 +1,34 @@
 package com.example.sopkathon_android_team3.presentation.home
 
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.sopkathon_android_team3.presentation.component.BasicLottie
 import com.example.sopkathon_android_team3.presentation.home.component.HomeDescriptionDialog
+import com.example.sopkathon_android_team3.presentation.type.CrystalAnimation
 import com.example.sopkathon_android_team3.ui.theme.SOPKATHON_ANDROID_TEAM3Theme
-import com.example.sopkathon_android_team3.ui.theme.SopkathonAndroidTeam3Theme
 
 @Composable
 fun HomeRoute(
     padding: PaddingValues,
-    onNavigateToStorage: () -> Unit
+    onNavigateToStorage: () -> Unit,
+    viewModel: HomeViewModel = viewModel()
+
 ) {
-    var showDialog by remember { mutableStateOf(true) }
+    var showDialog by remember { mutableStateOf(false) }
+    val animation by viewModel.animation.collectAsState()
 
     if (showDialog) {
         HomeDescriptionDialog(
@@ -30,24 +37,25 @@ fun HomeRoute(
             onDismissRequest = { showDialog = false }
         )
     }
+    LaunchedEffect(Unit) {
+        viewModel.fetchAnimation(count = 3)
+    }
     HomeScreen(
         modifier = Modifier.padding(padding),
-        onNavigateToStorage = onNavigateToStorage
+        animation = animation,
+        onNavigateToStorage = onNavigateToStorage,
     )
 }
 
 @Composable
 private fun HomeScreen(
     onNavigateToStorage: () -> Unit,
-    modifier: Modifier = Modifier
+    animation: CrystalAnimation,
+    modifier: Modifier = Modifier,
 ) {
-
-
-    Text(
-        modifier = modifier.clickable(onClick = onNavigateToStorage),
-        text = "This is Home Screen",
-        color = SopkathonAndroidTeam3Theme.colors.white
-    )
+    Column(modifier = modifier.fillMaxSize()) {
+        BasicLottie(crystalAnimation = animation.jsonFileName)
+    }
 }
 
 @Preview

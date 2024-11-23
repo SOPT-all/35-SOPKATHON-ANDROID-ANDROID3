@@ -2,7 +2,6 @@ package com.example.sopkathon_android_team3.presentation.component
 
 import androidx.annotation.RawRes
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -10,17 +9,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.layout.ContentScale
 import com.airbnb.lottie.compose.LottieAnimation
-import com.airbnb.lottie.compose.LottieClipSpec
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieAnimatable
 import com.airbnb.lottie.compose.rememberLottieComposition
-import com.example.sopkathon_android_team3.R
 
 @Composable
 fun BasicLottie(
@@ -31,6 +26,7 @@ fun BasicLottie(
 
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(crystalAnimation))
     var isPlaying by remember { mutableStateOf(true) }
+    var isReplay by remember { mutableStateOf(false) }
     val progress by animateLottieCompositionAsState(
         composition = composition,
         isPlaying = isPlaying,
@@ -44,7 +40,13 @@ fun BasicLottie(
             composition = composition,
             initialProgress = 0f
         )
+    }
+
+    LaunchedEffect (crystalAnimation) {
         isPlaying = true
+        if (progress == 1.0f) {
+            isReplay = true
+        }
     }
 
 
@@ -58,6 +60,10 @@ fun BasicLottie(
             progress = {
                 if (progress == 1.0f) {
                     isPlaying = false
+                }
+                if (isReplay) {
+                    isPlaying = true
+                    isReplay = false
                 }
                 progress
             },
