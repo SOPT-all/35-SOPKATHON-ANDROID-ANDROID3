@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -18,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.compose.ui.window.SecureFlagPolicy
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.sopkathon_android_team3.presentation.component.button.ConfirmEvenIfButton
 import com.example.sopkathon_android_team3.ui.theme.Gray5
 import com.example.sopkathon_android_team3.ui.theme.Gray9
@@ -33,7 +36,10 @@ fun EvenIfHistoryDialog(
     ifText: String,
     onClickConfirm: () -> Unit,
     modifier: Modifier = Modifier,
+    viewModel: HistoryViewModel = viewModel()
 ) {
+    val beadData by viewModel.beadDataState.collectAsState()
+
     Dialog(
         onDismissRequest = onDismissRequest,
         properties = DialogProperties(
