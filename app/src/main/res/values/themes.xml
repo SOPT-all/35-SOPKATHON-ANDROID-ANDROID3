@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.SOPKATHON_ANDROID_TEAM3" parent="android:Theme.Material.NoActionBar" />
+    <style name="Theme.SOPKATHON_ANDROID_TEAM3" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
 </resources>
