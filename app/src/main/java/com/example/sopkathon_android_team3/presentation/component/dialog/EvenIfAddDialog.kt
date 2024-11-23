@@ -23,8 +23,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,8 +36,12 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.compose.ui.window.SecureFlagPolicy
 import com.example.sopkathon_android_team3.R
+import com.example.sopkathon_android_team3.presentation.component.DialogTextField
 import com.example.sopkathon_android_team3.presentation.component.button.ConfirmEvenIfButton
 import com.example.sopkathon_android_team3.ui.theme.Black
+import com.example.sopkathon_android_team3.ui.theme.Gray6
+import com.example.sopkathon_android_team3.ui.theme.Purple4
+import com.example.sopkathon_android_team3.ui.theme.White
 import com.example.sopkathon_android_team3.ui.theme.defaultSopkathonAndroidTeam3Typography
 
 @Composable
@@ -58,28 +64,22 @@ fun EvenIfAddDialog(
             decorFitsSystemWindows = true, // 다이얼로그 시스템 창 경계를 고려
         )
     ) {
-        val configuration = LocalConfiguration.current
-        val screenHeight = configuration.screenHeightDp.dp
-        val dialogHeight = screenHeight * 0.5f
-
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(dialogHeight)
+                .clip(RoundedCornerShape(12.dp))
                 .background(
-                    color = Color.White,
-                )
-                .clip(RoundedCornerShape(8.dp)),
+                    color = Purple4,
+                ),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Box(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Image(
-                    painter = painterResource(R.drawable.ic_launcher_background),
+                    imageVector = ImageVector.vectorResource(R.drawable.ic_close_white),
                     contentDescription = "",
                     modifier = Modifier
-                        .size(40.dp)
                         .align(Alignment.CenterEnd)
                         .padding(top = 16.dp, end = 16.dp)
                         .clickable { onClickCancel() }
@@ -87,102 +87,45 @@ fun EvenIfAddDialog(
             }
 
             Text(
-                text = "오늘의 Even If",
-                style = defaultSopkathonAndroidTeam3Typography.head4Bold20,
-                color = Black,
-                modifier = Modifier
-                    .padding(top = 29.dp)
-            )
-
-            Text(
                 text = "비록",
-                style = defaultSopkathonAndroidTeam3Typography.body1SemiBold16,
-                color = Black,
-                modifier = Modifier
-                    .padding(top = 41.dp)
+               // style = defaultSopkathonAndroidTeam3Typography.head3Bold23,
+                color = White,
             )
 
-            // 비록 TextField (추후 변경해야 함) padding top 10 추가
-            BasicTextField(
+            // defaultSopkathonAndroidTeam3Typography.head5Bold18
+            DialogTextField(
                 value = evenValue,
+                hintText = "절망적인 상황이지만",
                 onValueChange = onEvenValueChange,
-                singleLine = true,
-                textStyle = TextStyle(
-                    color = Color.Black,
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Normal,
-                ),
-                decorationBox = { innerTextField ->
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .background(
-                                color = Color(0xFFBAE5F5),
-                                shape = RoundedCornerShape(size = 16.dp)
-                            )
-                            .padding(all = 16.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Create,
-                            contentDescription = "",
-                            tint = Color.DarkGray,
-                        )
-                        Spacer(modifier = Modifier.width(width = 8.dp))
-                        innerTextField()
-                    }
-                },
+                inputTextStyle = TextStyle(),
+                hintTextStyle = TextStyle(),
+                paddingTop = 19.dp,
+                paddingHorizontal = 40.dp,
+                internalPaddingVertical = 14.dp,
+                internalPaddingHorizontal = 48.dp,
+                inputTextColor = White,
+                hintTextColor = Gray6,
             )
 
-            Text(
-                text = "일지라도",
-                style = defaultSopkathonAndroidTeam3Typography.body1SemiBold16,
-                color = Black,
-                modifier = Modifier
-                    .padding(top = 10.dp)
-            )
-
-            // 일지라도 TextField (추후 변경해야 함) padding top 12 추가
-            BasicTextField(
+            DialogTextField(
                 value = ifValue,
+                hintText = "긍정적인 결과가 나타났다",
                 onValueChange = onIfValueChange,
-                singleLine = true,
-                textStyle = TextStyle(
-                    color = Color.Black,
-                    fontSize = 16.sp,
-                    fontWeight = FontWeight.Normal,
-                ),
-                decorationBox = { innerTextField ->
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .background(
-                                color = Color(0xFFBAE5F5),
-                                shape = RoundedCornerShape(size = 16.dp)
-                            )
-                            .padding(all = 16.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Create,
-                            contentDescription = "",
-                            tint = Color.DarkGray,
-                        )
-                        Spacer(modifier = Modifier.width(width = 8.dp))
-                        innerTextField()
-                    }
-                },
+                inputTextStyle = TextStyle(),
+                hintTextStyle = TextStyle(),
+                paddingTop = 31.dp,
+                paddingHorizontal = 40.dp,
+                internalPaddingVertical = 57.dp,
+                internalPaddingHorizontal = 31.dp,
+                inputTextColor = White,
+                hintTextColor = Gray6,
             )
-            Spacer(modifier = Modifier.weight(1f))
 
             ConfirmEvenIfButton(
                 buttonText = "완료",
-                onClick = {
-                onClickConfirm(evenValue, ifValue) // 확인 버튼 누르면 서버에 텍스트 전송
-            },
+                onClick = { onClickConfirm(evenValue, ifValue) },
                 modifier = Modifier
                     .padding(horizontal = 20.dp)
-                    .padding(bottom = 26.dp)
             )
         }
     }
@@ -193,9 +136,9 @@ fun EvenIfAddDialog(
 fun BasicDialogPreview() {
     EvenIfAddDialog(
         onDismissRequest = {},
-        evenValue = "",
+        evenValue = "d",
         onEvenValueChange = {},
-        ifValue = "잠긴 시간 동안 취소하기 어려워요",
+        ifValue = "",
         onIfValueChange = {},
         onClickConfirm = { even, ifValue -> println("Even: $even, If: $ifValue") },
         onClickCancel = {}
