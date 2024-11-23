@@ -1,25 +1,12 @@
 package com.example.sopkathon_android_team3.ui.theme
 
-import androidx.compose.material3.Typography
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.example.sopkathon_android_team3.R
-
-// Set of Material typography styles to start with
-val Typography = Typography(
-    bodyLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
-    )
-)
 
 val PretendardBold = FontFamily(Font(R.font.pretendard_bold))
 val PretendardRegular = FontFamily(Font(R.font.pretendard_regular))
@@ -114,7 +101,4 @@ val defaultSopkathonAndroidTeam3Typography =
         ),
     )
 
-val LocalSopkathonAndroidTeam3Typography =
-    staticCompositionLocalOf {
-        defaultSopkathonAndroidTeam3Typography
-    }
+val LocalSopkathonAndroidTeam3Typography = staticCompositionLocalOf { defaultSopkathonAndroidTeam3Typography }
