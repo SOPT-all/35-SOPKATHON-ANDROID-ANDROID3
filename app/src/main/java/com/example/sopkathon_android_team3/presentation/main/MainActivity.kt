@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.example.sopkathon_android_team3.presentation.dummy.DummyScreen
+import androidx.navigation.compose.rememberNavController
 import com.example.sopkathon_android_team3.ui.theme.SOPKATHON_ANDROID_TEAM3Theme
 
 class MainActivity : ComponentActivity() {
@@ -12,8 +12,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            val navController = rememberNavController()
+
             SOPKATHON_ANDROID_TEAM3Theme {
-                DummyScreen()
+                MainScreen(navController = navController)
             }
         }
     }
